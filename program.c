@@ -14,6 +14,7 @@ int main ()
     bool b_altitude = false ;
     bool b_ias = false ;
     bool b_weight = false ;
+
     bool b_headwind = false ;
     bool b_pressure_altitude = false ;
     bool b_tas = false ;
@@ -40,7 +41,28 @@ if(choix==1) {
     b_altitude = true;
 }
 
-if (choix==2)
+if (choix==2) {
+    b_tas=true;
+    b_ias=true;
+    b_pressure_altitude = true;
+    b_pressure = true;
+    b_altitude = true;
+}
+
+if (choix==3){
+    b_ground_speed=true;   
+    b_tas=true;
+    b_headwind=true;
+    b_ias=true;
+    b_pressure_altitude = true;
+    b_pressure = true;
+    b_altitude = true;
+}
+
+if (choix==4){
+    b_range =true;
+    b
+}
 
     double wind_angle;
     int wind_speed;
