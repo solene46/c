@@ -6,7 +6,7 @@ int main ()
 {
     bool b_wind_angle= false ;
     bool b_wind_speed= false ;
-    bool b_fuel_= false ;
+    bool b_fuel= false ;
     bool b_consumption = false ;
     bool b_wing_surface = false ;
     bool b_pressure = false ;
@@ -60,8 +60,21 @@ if (choix==3){
 }
 
 if (choix==4){
-    b_range =true;
-    b
+    b_range =true;     fuel*ground_speed*1.852/consumption
+    b_fuel=true;
+    b_ground_speed=true
+    b_tas=true;
+    b_headwind=true;
+    b_ias=true;
+    b_pressure_altitude = true;
+    b_pressure = true;
+    b_altitude = true;
+    b_consumption=true;
+}
+
+if (choix==5){     takeoff = 	300*(1+pressure_altitude/1000)*(1-0.01*fmax(0, temperature-15))*(1-headwind/ground_speed)*(weight*weight/1157*1157);
+    b_takeoff=true;
+    b_pressure_altitude=true  
 }
 
     double wind_angle;
