@@ -25,6 +25,7 @@ int main ()
     bool b_rate_of_climb = false ;
     bool b_return = false ;
     bool b_descent_speed = false;
+    bool b_no_return=false;
 
 // faire ca pour chaque variable //
 //tu sélectionne par exemple printf et apres tu fais controle+d pour marquer sur plusieurs lignes en meme temps des variable pour gagner du temps //
@@ -76,7 +77,7 @@ if (choix==4){
     b_consumption=true;
 }
 
-if (choix==5){     takeoff = 	300*(1+pressure_altitude/1000)*(1-0.01*fmax(0, temperature-15))*(1-headwind/ground_speed)*(weight*weight/1157*1157);
+if (choix==5){     
     b_takeoff=true;
 
     b_pressure_altitude=true;
@@ -89,8 +90,9 @@ if (choix==5){     takeoff = 	300*(1+pressure_altitude/1000)*(1-0.01*fmax(0, tem
     b_wind_angle=true;
     b_wind_speed=true;
 
-    b_ground_speed=true;     
+    b_ground_speed=true;     //ground_speed = tas - headwind;//
     b_tas=true;
+
     b_ias=true;
 
     b_pressure_altitude = true;
@@ -100,7 +102,45 @@ if (choix==5){     takeoff = 	300*(1+pressure_altitude/1000)*(1-0.01*fmax(0, tem
     b_weight=true;
 }
 
-if (choix==6){
+if (choix==6){    
+    b_wing_loading=true;
+    b_weight=true;
+    b_wing_surface=true;
+}
+
+if (choix==7){      //rate_of_climb = 700*(1-pressure_altitude/10000)*(1-0.01*fmax(0,temperature-15));//
+    b_rate_of_climb=true;
+
+    b_pressure_altitude=true;
+    b_pressure = true;
+    b_altitude = true;
+    b_temperature=true;
+}
+
+if (choix==8){
+    b_no_return=true;     //range/2;//
+    b_range =true;     
+    b_fuel=true;
+    b_ground_speed=true
+    b_tas=true;
+
+    b_headwind=true;
+    b_wind_angle=true;
+    b_wind_speed=true;
+
+    b_ias=true;
+
+    b_pressure_altitude = true;
+    b_pressure = true;
+    b_altitude = true;
+    b_consumption=true;
+}
+
+if (choix==9){     //ground_speed*tan(3);//
+    b_ground_speed=true;
+    b_descent_speed=true;
+    b_tas=true;
+    b_head
 
 }
 
@@ -148,39 +188,40 @@ if (choix==6){
     printf("entrer poids total:");
     scanf ("%d", &weight); 
 
+
+
     double headwind;
-    
     headwind = wind_speed*cos(wind_angle);
+
     double pressure_altitude;
-    
     if(b_pressure_altitude)
     {
         pressure_altitude = altitude+(1023-pressure)*30;
         printf("Altitude-pression=%lf\n", pressure_altitude);
     }
-        double tas;
-    
+
+    double tas;
     tas = ias*(1+2*pressure_altitude/1000);
+
     double ground_speed;
-    
     ground_speed = tas - headwind;
+
     double range;
-    
     range = fuel*ground_speed*1.852/consumption;
+
     double takeoff;
-    
     takeoff = 	300*(1+pressure_altitude/1000)*(1-0.01*fmax(0, temperature-15))*(1-headwind/ground_speed)*(weight*weight/1157*1157);
+
     double wing_loading;
-    
     wing_loading = weight/wing_surface;
+
     double rate_of_climb;
-    
     rate_of_climb = 700*(1-pressure_altitude/10000)*(1-0.01*fmax(0,temperature-15));
+
     double no_return;
-    
     no_return = range/2;
+
     double descent_speed;
-    
     descent_speed = ground_speed*tan(3);
 
     printf ("Vent de face=%lf\n", headwind);
