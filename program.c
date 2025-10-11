@@ -266,16 +266,18 @@ if (choix==9){     //ground_speed*tan(3);//
     }
 
     double no_return;
-    no_return = range/2;
+    if (b_no_return){
+        
+        no_return = range/2;
+        printf ("Point de non-retour=%lf\n", no_return);
+    }
 
     double descent_speed;
-    descent_speed = ground_speed*tan(3);
-    
-    
-    
-    printf ("Point de non-retour=%lf\n", no_return);
-    printf ("Vitesse de descente=%lf\n", descent_speed);
-
+    if (b_descent_speed){
+        
+        descent_speed = ground_speed*tan(3);
+        printf ("Vitesse de descente=%lf\n", descent_speed);
+    }
     
     return 0;
 }
