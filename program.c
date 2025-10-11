@@ -155,26 +155,40 @@ if (choix==9){     //ground_speed*tan(3);//
     int ias;
     int weight;
 
-    printf("entrer Direction relative du vent:");
-    scanf ("%lf", &wind_angle);
+    if (b_wind_angle ){ 
+        printf("entrer Direction relative du vent:");
+        scanf ("%lf", &wind_angle);
+    }
 
-    printf("entrer vitesse vent:");
-    scanf ("%d", &wind_speed);    
+    if (b_wind_speed ){ 
+        printf("entrer vitesse vent:");
+        scanf ("%d", &wind_speed); 
+    }   
 
-    printf("entrer carburant disponible:");
-    scanf ("%d", &fuel);   
-    
-    printf("entrer consommation:");
-    scanf ("%d", &consumption);  
+    if (b_fuel ){ 
+        printf("entrer carburant disponible:");
+        scanf ("%d", &fuel);   
+   
+    }
+    if (b_consumption ){ 
+        printf("entrer consommation:");
+        scanf ("%d", &consumption);
+    }  
 
-    printf("entrer surface alaire:");
-    scanf ("%d", &wing_surface);  
+    if (b_wing_surface ){ 
+        printf("entrer surface alaire:");
+        scanf ("%d", &wing_surface)
+    };  
 
-    printf("entrer pression ambiante:");
-    scanf ("%d", &pressure);  
-    
-    printf("entrer Température extérieure:");
-    scanf ("%d", &temperature);    
+    if (b_pressure ){ 
+        printf("entrer pression ambiante:");
+        scanf ("%d", &pressure);  
+
+    }
+    if (b_temperature ){ 
+        printf("entrer Température extérieure:");
+        scanf ("%d", &temperature);
+    }    
 
     if(b_altitude){
         printf("entrer altitude:");
@@ -182,16 +196,25 @@ if (choix==9){     //ground_speed*tan(3);//
 
     }
 
-    printf("entrer Indicated Air Speede:");
-    scanf ("%d", &ias); 
+    if (b_ias ){
+        printf("entrer Indicated Air Speede:");
+        scanf ("%d", &ias);
+    } 
 
-    printf("entrer poids total:");
-    scanf ("%d", &weight); 
+    if (b_weight ){
+        printf("entrer poids total:");
+        scanf ("%d", &weight);
+    }
+    
 
 
 
     double headwind;
-    headwind = wind_speed*cos(wind_angle);
+    if (b_headwind){ 
+
+        headwind = wind_speed*cos(wind_angle);
+        printf ("Vent de face=%lf\n", headwind);
+    }
 
     double pressure_altitude;
     if(b_pressure_altitude)
@@ -201,37 +224,55 @@ if (choix==9){     //ground_speed*tan(3);//
     }
 
     double tas;
-    tas = ias*(1+2*pressure_altitude/1000);
+    if (b_pressure_altitude){
+
+        tas = ias*(1+2*pressure_altitude/1000);
+        printf ("Vitesse vraie=%lf\n", tas);
+    }
 
     double ground_speed;
-    ground_speed = tas - headwind;
+    if (b_ground_speed){
+        
+        ground_speed = tas - headwind;
+        printf ("Vitesse-sol=%lf\n", ground_speed);
+    }
 
     double range;
-    range = fuel*ground_speed*1.852/consumption;
+    if (b_range){
+        
+        range = fuel*ground_speed*1.852/consumption;
+        printf ("Distance franchissable=%lf\n", range);
+    }
 
     double takeoff;
-    takeoff = 	300*(1+pressure_altitude/1000)*(1-0.01*fmax(0, temperature-15))*(1-headwind/ground_speed)*(weight*weight/1157*1157);
+    if (b_takeoff){
+        
+        takeoff =300*(1+pressure_altitude/1000)*(1-0.01*fmax(0, temperature-15))*(1-headwind/ground_speed)*(weight*weight/1157*1157);
+        printf ("Distance de décollage=%lf\n", takeoff);
+    }
 
     double wing_loading;
-    wing_loading = weight/wing_surface;
+    if (b_wing_loading){
+        
+        wing_loading = weight/wing_surface;
+        printf("Charge alaire=%lf\n", wing_loading);
+    }
 
     double rate_of_climb;
-    rate_of_climb = 700*(1-pressure_altitude/10000)*(1-0.01*fmax(0,temperature-15));
+    if (b_rate_of_climb){
+        
+        rate_of_climb = 700*(1-pressure_altitude/10000)*(1-0.01*fmax(0,temperature-15));
+        printf ("Taux de montée=%lf\n", rate_of_climb);
+    }
 
     double no_return;
     no_return = range/2;
 
     double descent_speed;
     descent_speed = ground_speed*tan(3);
-
-    printf ("Vent de face=%lf\n", headwind);
     
-    printf ("Vitesse vraie=%lf\n", tas);
-    printf ("Vitesse-sol=%lf\n", ground_speed);
-    printf ("Distance franchissable=%lf\n", range);
-    printf ("Distance de décollage=%lf\n", takeoff);
-    printf ("Charge alaire=%lf\n", wing_loading);
-    printf ("Taux de montée=%lf\n", rate_of_climb);
+    
+    
     printf ("Point de non-retour=%lf\n", no_return);
     printf ("Vitesse de descente=%lf\n", descent_speed);
 
