@@ -156,38 +156,62 @@ if (choix==9){     //ground_speed*tan(3);//
     int weight;
 
     if (b_wind_angle ){ 
-        printf("entrer Direction relative du vent:");
-        scanf ("%lf", &wind_angle);
+
+        do 
+        {
+           printf("entrer Direction relative du vent:");
+           scanf ("%lf", &wind_angle);
+        } while(wind_angle<-3,14159265||wind_angle>3,14159265);
+
     }
+    
 
     if (b_wind_speed ){ 
-        printf("entrer vitesse vent:");
-        scanf ("%d", &wind_speed); 
-    }   
 
-    if (b_fuel ){ 
-        printf("entrer carburant disponible:");
-        scanf ("%d", &fuel);   
-   
+        do 
+        {
+           printf("entrer vitesse vent:");
+           scanf ("%d", &wind_speed); 
+        }while(wing_speed<0||wing_speed>150); 
     }
+
+    if (b_fuel ){
+        
+        do 
+        {
+           printf("entrer carburant disponible:");
+           scanf ("%d", &fuel);   
+        }while(fuel<20||fuel>350000);
+    }
+
+
     if (b_consumption ){ 
-        printf("entrer consommation:");
-        scanf ("%d", &consumption);
+        do 
+           printf("entrer consommation:");
+           scanf ("%d", &consumption);
+        while(consumption<10||consumtion>15000);
     }  
 
+
     if (b_wing_surface ){ 
-        printf("entrer surface alaire:");
-        scanf ("%d", &wing_surface)
+        do 
+           printf("entrer surface alaire:");
+           scanf ("%d", &wing_surface);
+        while(wing_surface<5||wing_surface>900);
     };  
 
     if (b_pressure ){ 
-        printf("entrer pression ambiante:");
-        scanf ("%d", &pressure);  
-
+        do
+           printf("entrer pression ambiante:");
+           scanf ("%d", &pressure);
+        while(pressure<300||pressure>1050);  
     }
-    if (b_temperature ){ 
-        printf("entrer Température extérieure:");
-        scanf ("%d", &temperature);
+
+    if (b_temperature ){
+        do 
+           printf("entrer Température extérieure:");
+           scanf ("%d", &temperature);
+        while
     }    
 
     if(b_altitude){
